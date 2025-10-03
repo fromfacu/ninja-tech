@@ -1,0 +1,135 @@
+/* Variables de color */
+:root {
+    --color-rojo: #e10600;
+    --color-negro: #121212;
+    --color-blanco: #f5f5f5;
+    --fuente-general: 'Segoe UI', sans-serif;
+}
+
+/* Estilo general */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+    font-family: var(--fuente-general);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estructura semántica */
+header, main, footer {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+}
+
+/* Navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--color-blanco);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--color-negro);
+    background-color: var(--color-blanco);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+
+/* Main */
+main {
+    flex: 1;
+    background-color: var(--color-negro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a1a;
+    color: var(--color-blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer .social {
+    display: flex;
+    gap: 1rem;
+}
+
+footer .social a {
+    text-decoration: none;
+    color: var(--color-rojo);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+    color: var(--color-blanco);
+}
+/* Logo */
+.logo {
+    max-height: 80px;
+    margin-bottom: 1rem;
+}
+
+/* Formulario */
+form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type="email"] {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    width: 250px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #b00000;
+}
