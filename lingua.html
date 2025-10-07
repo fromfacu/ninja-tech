@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lingua Lection · Ninja Tech</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/lingua.css">
+  <meta name="description" content="Lingua Lection — Tu asistente inteligente para aprender idiomas, powered by Ninja Tech.">
+</head>
+<body class="lingua-bg">
+  <header class="lingua-header">
+    <img src="assets/logo-ninja-tech.png" alt="Ninja Tech Logo" class="ll-logo">
+    <h1>Lingua Lection</h1>
+    <p class="ll-sub">Aprendizaje de idiomas inteligente, personalizado y gamificado</p>
+  </header>
+  <main class="ll-main">
+    <section class="ll-form-section">
+      <h2>Escribí tu texto en inglés o español</h2>
+      <textarea id="ll-input" placeholder="Escribí aquí tu frase o párrafo..." rows="4"></textarea>
+      <button id="ll-analyze" type="button">Analizar</button>
+    </section>
+    <section class="ll-output-section">
+      <div class="ll-output">
+        <h3>Traducción</h3>
+        <div id="ll-translation" class="ll-result"></div>
+      </div>
+      <div class="ll-output">
+        <h3>Lección</h3>
+        <div id="ll-lesson" class="ll-result"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="ll-footer">
+    <p>Lingua Lection · Powered by Ninja Tech ·
+      <span class="ll-cyan">Acción, poder e inteligencia en cada lección.</span>
+    </p>
+    <p><a href="index.html">← Volver a Ninja Tech</a></p>
+  </footer>
+  <script src="js/lingua.js"></script>
+</body>
+</html>
