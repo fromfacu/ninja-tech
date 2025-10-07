@@ -1,6 +1,4 @@
-// Lingua Lection v1.0 - Hito 2: Flujo Local (Frontend JS)
-
-document.getElementById('ll-analyze').addEventListener('click', function() {
+document.getElementById('ll-analyze').addEventListener('click', async function() {
   const input = document.getElementById('ll-input').value.trim();
   const translationDiv = document.getElementById('ll-translation');
   const lessonDiv = document.getElementById('ll-lesson');
@@ -12,18 +10,22 @@ document.getElementById('ll-analyze').addEventListener('click', function() {
     return;
   }
 
-  // Simulación de respuestas (predefinidas)
-  // TODO: Reemplazar por integración real en hito 4+
-  let simulatedTranslation = '';
-  let simulatedLesson = '';
-  // Detección simple de idioma (solo para demo)
-  if (/^[a-zA-Z0-9 .,!?'"-]+$/.test(input)) {
-    simulatedTranslation = 'Traducción al español: ' + input.split('').reverse().join('');
-    simulatedLesson = 'Lección: Este es un ejemplo de cómo funcionará Lingua Lection. Aquí recibirás explicaciones y ejercicios personalizados según el texto que envíes.';
-  } else {
-    simulatedTranslation = 'Traducción al inglés: ' + input.split('').reverse().join('');
-    simulatedLesson = 'Lección: Ejemplo local. Cuando actives la IA, aquí aparecerán tips y ejercicios para mejorar tu inglés con el contenido que escribiste.';
+  translationDiv.textContent = 'Cargando...';
+  lessonDiv.textContent = '';
+
+  try {
+    const res = await fetch('/api/lingua', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ texto: input })
+    });
+    const data = await res.json();
+
+    translationDiv.textContent = data.translation || '';
+    lessonDiv.textContent = data.lesson || '';
+  } catch (err) {
+    translationDiv.textContent = '';
+    lessonDiv.textContent = '';
+    alert('Error al comunicarse con el servidor.');
   }
-  translationDiv.textContent = simulatedTranslation;
-  lessonDiv.textContent = simulatedLesson;
 });
