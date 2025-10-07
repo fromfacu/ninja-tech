@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ninja Tech · El Dojo</title>
+
+  <!-- Estilos globales del sitio (NO tocar) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Estilos específicos del Dojo (tema retro/terminal ninja) -->
+  <link rel="stylesheet" href="css/dojo.css">
+
+  <meta name="description" content="El Dojo - juegos rápidos: Snake y Tetris.">
+</head>
+
+<body class="dojo">
+  <h1>🥷 El Dojo</h1>
+  <p>Entrenamiento lúdico · Terminal Ninja</p>
+
+  <div class="controls" aria-hidden="false">
+    <label for="gameSelect" class="label-game">Juego:</label>
+    <select id="gameSelect" aria-label="Seleccionar juego">
+      <option value="snake">Snake</option>
+      <option value="tetris">Tetris</option>
+    </select>
+
+    <button id="startBtn">Iniciar</button>
+    <button id="pauseBtn" disabled>Pausa</button>
+    <button id="restartBtn" disabled>Reiniciar</button>
+
+    <button id="fullscreenBtn">Pantalla completa</button>
+  </div>
+
+  <div id="scoreWrap">
+    <div id="score">Puntuación: 0</div>
+    <div id="highscore-snake">Snake Récord: 0</div>
+    <div id="highscore-tetris">Tetris Récord: 0</div>
+  </div>
+
+  <div class="canvas-wrap">
+    <div id="overlayMsg" aria-hidden="true"></div>
+    <canvas id="gameCanvas" width="400" height="400" aria-label="Canvas del juego"></canvas>
+  </div>
+
+  <!-- Scripts: tetris.js debe existir en js/tetris.js -->
+  <script src="js/tetris.js"></script>
+  <script src="js/dojo.js"></script>
+</body>
+</html>

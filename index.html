@@ -1,50 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninja Tech - Ecosistema Tecnológico</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ninja Tech - Ecosistema Tecnológico</title>
+
+  <!-- Estilos globales (no tocar) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Estilos específicos para la home (complementario) -->
+  <link rel="stylesheet" href="css/home.css">
+
+  <meta name="description" content="Ninja Tech — Curaduría de tecnología, comunidad y formación. Entrá al Dojo o explorá la tienda.">
+  <meta name="author" content="Facundo David Barreto">
 </head>
 <body>
-    <header>
-        <!-- Logo funcional -->
-        <img src="logo-ninja-tech.png" alt="Logo Ninja Tech" class="logo">
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <img src="logo-ninja-tech.png" alt="Ninja Tech" class="logo" />
+      <nav aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="dojo.html">El Dojo</a></li>
+          <li><a href="#">Tienda</a></li>
+          <li><a href="mapa_ecosistema.html">Mapa</a></li>
+          <li><a href="#">Radar</a></li>
+        </ul>
+      </nav>
+      <a class="cta-primary" href="dojo.html">Sumate al Dojo</a>
+    </div>
+  </header>
 
-        <!-- Navegación principal -->
-        <nav>
-            <ul>
-                <li><a href="#">Tienda</a></li>
-                <li><a href="#">Comunidad</a></li>
-                <li><a href="#">El Dojo</a></li>
-                <li><a href="#">Radar 24/7</a></li>
-            </ul>
-        </nav>
-        <!-- CTA principal: El visitante debe registrarse en la comunidad Ninja Tech (hecho/no hecho) -->
-    </header>
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <h1 id="hero-title">Tecnología con criterio</h1>
+        <p class="hero-sub">
+          Ninja Tech es la curaduría y la tribu que te acompañan: productos seleccionados por expertos,
+          contenido práctico y una comunidad que acelera tu aprendizaje.
+        </p>
 
-    <main>
-        <h2>Construyendo el Futuro Tecnológico</h2>
-        <p>Bienvenido al ecosistema Ninja Tech: innovación, comunidad y tecnología al alcance de todos.</p>
-
-        <!-- Formulario Netlify -->
-        <form name="registro-ninja" method="POST" data-netlify="true" action="/gracias.html">
-            <label for="email">Sumate a la comunidad. Dejanos tu email:</label><br><br>
-            <input type="email" name="email" id="email" required placeholder="tu@email.com">
-            <br><br>
-            <button type="submit">Registrarme</button>
-        </form>
-    </main>
-
-    <footer>
-        <h2>Contacto y Comunidad</h2>
-        <div class="social">
-            <a href="#">[FB]</a>
-            <a href="#">[IG]</a>
-            <a href="#">[YT]</a>
-            <a href="#">[TW]</a>
+        <div class="hero-ctas">
+          <a class="btn btn-hero" href="dojo.html" role="button">Ir al Dojo</a>
+          <a class="btn btn-outline" href="#" role="button">Explorar la Tienda</a>
         </div>
-        <p>© 2025 Ninja Tech · Todos los derechos reservados</p>
-    </footer>
+
+        <p class="hero-note">Contenido práctico · Garantía real · Comunidad activa</p>
+      </div>
+    </section>
+
+    <!-- 3 PILARES -->
+    <section class="pillars" aria-labelledby="pillars-title">
+      <h2 id="pillars-title" class="sr-only">Nuestros pilares</h2>
+
+      <div class="pillar-grid">
+        <article class="pillar" aria-labelledby="p1">
+          <div class="pillar-ico">🛒</div>
+          <h3 id="p1">Curaduría</h3>
+          <p>Seleccionamos productos con criterio técnico y experiencia real. Comprá con confianza y garantía.</p>
+          <a class="pill-cta" href="#" aria-label="Ir a la tienda">Ver la tienda →</a>
+        </article>
+
+        <article class="pillar" aria-labelledby="p2">
+          <div class="pillar-ico">🥷</div>
+          <h3 id="p2">Comunidad</h3>
+          <p>El Dojo es el hub gamificado para aprender, practicar y competir; ideal para estudiantes y profesionales.</p>
+          <a class="pill-cta" href="dojo.html" aria-label="Entrar al Dojo">Entrar al Dojo →</a>
+        </article>
+
+        <article class="pillar" aria-labelledby="p3">
+          <div class="pillar-ico">🛰️</div>
+          <h3 id="p3">Conocimiento</h3>
+          <p>El Radar Ninja y contenido educativo: picks, análisis y herramientas para que tomes mejores decisiones.</p>
+          <a class="pill-cta" href="mapa_ecosistema.html" aria-label="Ver el mapa del ecosistema">Leer más →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (3 pasos) -->
+    <section class="how" aria-labelledby="how-title">
+      <h2 id="how-title">Cómo funciona</h2>
+      <ol class="how-list">
+        <li>
+          <strong>Elegí con criterio.</strong>
+          Buscá desde productos probados por expertos o dejate guiar por nuestras recomendaciones.
+        </li>
+        <li>
+          <strong>Entrená y aprendé.</strong>
+          Sumate al Dojo para mejorar habilidades prácticas y participar de desafíos.
+        </li>
+        <li>
+          <strong>Recibí valor constante.</strong>
+          Suscribite al Radar Ninja para recibir picks y actualizaciones relevantes.
+        </li>
+      </ol>
+    </section>
+
+    <!-- LEAD CAPTURE (Netlify form) -->
+    <section class="lead" aria-labelledby="lead-title">
+      <h2 id="lead-title">Sumate a la comunidad</h2>
+      <p class="lead-sub">Recibí picks semanales, acceso a betas y contenido exclusivo del Dojo.</p>
+
+      <form name="registro-ninja" method="POST" data-netlify="true" action="/gracias.html" class="lead-form">
+        <label for="email">Tu email</label>
+        <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+        <button type="submit" class="btn btn-primary">Registrarme</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Ninja Tech · <a href="mapa_ecosistema.html">Mapa del Ecosistema</a></p>
+      <p class="muted">Diseño que transforma realidades, no decoración.</p>
+    </div>
+  </footer>
 </body>
 </html>

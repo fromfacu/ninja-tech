@@ -96,6 +96,7 @@ footer .social a {
 footer .social a:hover {
     color: var(--color-blanco);
 }
+
 /* Logo */
 .logo {
     max-height: 80px;

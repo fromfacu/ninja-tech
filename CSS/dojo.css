@@ -1,0 +1,111 @@
+/* =====  DOJO  –  TERMINAL NINJA  ===== */
+:root {
+  --dojo-bg: #060606;
+  --dojo-green: #9ef08a;
+  --dojo-cyan: #7ee0ff;
+  --dojo-amber: #ffd86b;
+  --panel-bg: #041004;
+  --panel-border: #08320a;
+}
+
+body.dojo {                      /* clase auxiliar para no contaminar el resto */
+  background-color: var(--dojo-bg);
+  color: var(--dojo-green);
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+body.dojo h1,
+body.dojo p {
+  margin: 0.2rem 0;
+}
+
+/* controles superiores (selectores / botones) */
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.controls select,
+.controls button {
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--panel-border);
+  background: #071007;
+  color: var(--dojo-green);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.controls select:disabled,
+.controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* marcadores */
+#scoreWrap {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#score,
+#highscore-snake,
+#highscore-tetris {
+  font-size: 0.95rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  border-radius: 6px;
+}
+
+#highscore-snake { color: var(--dojo-cyan); }
+#highscore-tetris { color: var(--dojo-amber); }
+
+/* canvas */
+.canvas-wrap {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.8), rgba(0, 0, 0, 0.6));
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+}
+
+canvas {
+  background: #000;
+  border: 3px solid #062006;
+  display: block;
+  touch-action: none;
+  image-rendering: pixelated;        /* look retro */
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+/* pantalla completa */
+button[onclick="document.documentElement.requestFullscreen()"] {
+  margin-top: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background: #071007;
+  color: var(--dojo-green);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* responsive */
+@media (max-width: 520px) {
+  .controls { gap: 0.35rem; }
+  .controls select,
+  .controls button { padding: 0.35rem 0.5rem; }
+}

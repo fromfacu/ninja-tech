@@ -1,0 +1,156 @@
+/* Estilos complementarios para index.html (home) */
+
+/* Use the site's variables in style.css where possible.
+   This file only adds layout & hero styles, leaving style.css untouched. */
+
+:root {
+  --home-max-width: 1100px;
+  --hero-padding: 4rem 1.25rem;
+  --accent: var(--color-rojo, #e10600);
+  --muted: rgba(255,255,255,0.72);
+}
+
+/* Header adjustments */
+.site-header {
+  background: linear-gradient(90deg, rgba(225,6,0,0.95), rgba(225,6,0,0.85));
+  color: white;
+  padding: 1rem;
+}
+.header-inner {
+  max-width: var(--home-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+.nav-list a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.35rem 0.5rem;
+}
+.cta-primary {
+  background: #fff;
+  color: var(--accent);
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* HERO */
+.hero {
+  padding: var(--hero-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 10%, rgba(225,6,0,0.03), transparent 200px);
+}
+.hero-inner {
+  max-width: var(--home-max-width);
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  color: var(--color-blanco);
+}
+.hero h1 {
+  font-size: 2.25rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+.hero-sub {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.btn-hero {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-outline {
+  border: 2px solid rgba(255,255,255,0.12);
+  color: var(--color-blanco);
+  background: transparent;
+}
+.hero-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* PILLARS */
+.pillars { padding: 2rem 1rem; }
+.pillar-grid {
+  max-width: var(--home-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.pillar {
+  background: rgba(255,255,255,0.02);
+  padding: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.pillar-ico { font-size: 2rem; }
+.pillar h3 { margin: 0.5rem 0; }
+.pillar p { color: var(--muted); margin-bottom: 0.8rem; line-height: 1.4; }
+.pill-cta { color: var(--accent); text-decoration: none; font-weight: 700; }
+
+/* HOW IT WORKS */
+.how { padding: 1.5rem 1rem; background: rgba(0,0,0,0.02); }
+.how-list {
+  max-width: var(--home-max-width);
+  margin: 0 auto;
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+}
+.how-list li { background: white; color: black; padding: 0.8rem; border-radius: 6px; }
+
+/* LEAD */
+.lead { padding: 2rem 1rem; text-align: center; }
+.lead-form { display: inline-flex; gap: 0.6rem; align-items: center; margin-top: 0.6rem; }
+.lead-form input[type="email"] { padding: 0.6rem 0.7rem; border-radius: 6px; border: 1px solid rgba(0,0,0,0.08); }
+.btn-primary { background: var(--accent); color: #fff; border: none; }
+
+/* FOOTER */
+footer { padding: 1.25rem; text-align: center; color: rgba(255,255,255,0.7); background: transparent; }
+
+/* Responsiveness */
+@media (max-width: 880px) {
+  .pillar-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.8rem; }
+}
+@media (max-width: 520px) {
+  .pillar-grid { grid-template-columns: 1fr; }
+  .header-inner { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  .hero-inner { text-align: center; }
+  .hero-ctas { justify-content: center; }
+  .lead-form { flex-direction: column; }
+}
