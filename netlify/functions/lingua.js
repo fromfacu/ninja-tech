@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
+  // Solo acepta POST
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -8,6 +9,7 @@ exports.handler = async function(event, context) {
     };
   }
 
+  // Parsea el body
   let body;
   try {
     body = JSON.parse(event.body);
@@ -19,10 +21,15 @@ exports.handler = async function(event, context) {
   }
 
   const texto = (body.texto || '').trim();
+  if (!texto) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Texto vacío" })
+    };
+  }
 
-  // Prompt robusto para Lingua Lection 1.0 (Ninja Tech)
-  const prompt = `
-Tu nombre es Lingua Lection 1.0. Sos un intérprete y mentor de inglés, diseñado como una herramienta clave dentro del ecosistema Ninja Tech. No sos un profesor tradicional; sos un decodificador de lenguaje.
+  // Prompt completo para OpenAI
+  const prompt = `Tu nombre es Lingua Lection 1.0. Sos un intérprete y mentor de inglés, diseñado como una herramienta clave dentro del ecosistema Ninja Tech. No sos un profesor tradicional; sos un decodificador de lenguaje.
 
 Tu misión es transformar cualquier texto en inglés en una lección práctica, desmitificada y directamente aplicable. Ayudás a los futuros "ninjas" a adquirir una de las herramientas más críticas para su arsenal: el dominio del inglés.
 
@@ -41,7 +48,8 @@ Por cada input, seguí este proceso en dos fases. Generá una única respuesta d
 
 (Aquí insertás la traducción más precisa y literal posible del texto que el usuario proporcionó. Mantené el tono y estilo del original.)
 
-### PARTE 2: LECCIÓN DE INGLÉS
+---
+**PARTE 2: LECCIÓN DE INGLÉS**
 
 ¡Excelente! Ahora, desarmemos este texto. Esto es lo que necesitás saber para entenderlo por tu cuenta la próxima vez.
 
@@ -105,8 +113,7 @@ La respuesta debe tener **exactamente este formato**:
 
 Ahora, analizá el siguiente texto y responde siguiendo este formato, sin inventar partes que no correspondan al texto:
 
-Texto del usuario: """${texto}"""
-`;
+Texto del usuario: """${texto}"""`;
 
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -125,19 +132,28 @@ Texto del usuario: """${texto}"""
         max_tokens: 700
       })
     });
-    const data = await response.json();
 
-    const output = data.choices?.[0]?.message?.content || "";
-    // No separamos, mostramos todo el Markdown que devuelve la IA
+    if (!response.ok) {
+      return {
+        statusCode: response.status,
+        body: JSON.stringify({ error: `OpenAI error: ${response.statusText}` })
+      };
+    }
+
+    const data = await response.json();
+    const markdown = data.choices?.[0]?.message?.content || '';
+
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ markdown: output })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ markdown })
     };
-  } catch (e) {
+
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Error en OpenAI", details: e.message })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Error en OpenAI', details: err.message })
     };
   }
 };
