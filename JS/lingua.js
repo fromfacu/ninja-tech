@@ -16,7 +16,7 @@ document.getElementById('ll-analyze').addEventListener('click', async function (
 
   try {
     // ✅ Ruta CORRECTA de la función serverless
-    const res = await fetch('/.netlify/functions/lingua', {
+    const res = await fetch('/.netlify/functions/lingua.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ texto: input })
