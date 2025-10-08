@@ -1,4 +1,5 @@
-document.getElementById('ll-analyze').addEventListener('click', async function() {
+// js/lingua.js  –  Lingua Lection 1.0  (cliente)
+document.getElementById('ll-analyze').addEventListener('click', async function () {
   const input = document.getElementById('ll-input').value.trim();
   const translationDiv = document.getElementById('ll-translation');
   const lessonDiv = document.getElementById('ll-lesson');
@@ -14,15 +15,22 @@ document.getElementById('ll-analyze').addEventListener('click', async function()
   lessonDiv.textContent = '';
 
   try {
-    const res = await fetch('/api/lingua', {
+    // ✅ Ruta CORRECTA de la función serverless
+    const res = await fetch('/.netlify/functions/lingua', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ texto: input })
     });
+
+    if (!res.ok) throw new Error('Respuesta fallida');
+
     const data = await res.json();
 
-    translationDiv.textContent = data.translation || '';
-    lessonDiv.textContent = data.lesson || '';
+    // Separamos el markdown que llega en data.markdown
+    const parts = data.markdown.split('---');
+    translationDiv.innerHTML = parts[1] || ''; // TRADUCCIÓN
+    lessonDiv.innerHTML   = parts[2] || '';   // LECCIÓN
+
   } catch (err) {
     translationDiv.textContent = '';
     lessonDiv.textContent = '';
