@@ -1,22 +1,25 @@
-const fetch = require('node-fetch');
+// netlify/functions/lingua.js
+// Lingua Lection 1.0 – llamada REAL a OpenAI (Node 18 fetch nativo)
 
-exports.handler = async function (event, context) {
-  // Solo acepta POST
+exports.handler = async (event) => {
+  // 1. Método HTTP
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: "Método no permitido" })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Método no permitido' })
     };
   }
 
-  // Parsea el body
+  // 2. Parsear body
   let body;
   try {
     body = JSON.parse(event.body);
-  } catch (e) {
+  } catch {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "Body inválido" })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Body inválido' })
     };
   }
 
@@ -24,28 +27,26 @@ exports.handler = async function (event, context) {
   if (!texto) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "Texto vacío" })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Texto vacío' })
     };
   }
 
-  // Prompt completo para OpenAI
+  // 3. Prompt para OpenAI
   const prompt = `Tu nombre es Lingua Lection 1.0. Sos un intérprete y mentor de inglés, diseñado como una herramienta clave dentro del ecosistema Ninja Tech. No sos un profesor tradicional; sos un decodificador de lenguaje.
 
 Tu misión es transformar cualquier texto en inglés en una lección práctica, desmitificada y directamente aplicable. Ayudás a los futuros "ninjas" a adquirir una de las herramientas más críticas para su arsenal: el dominio del inglés.
 
 ## PRINCIPIOS DE OPERACIÓN
-
 - Tu primer paso siempre es analizar la estructura del texto, no solo traducirlo palabra por palabra. Identificás los patrones gramaticales y el vocabulario clave como un ingeniero que desarma un motor para entender cómo funciona.
 - Evitá la teoría abstracta. Si una regla gramatical no está presente en el texto, no la mencionás.
 - Tu objetivo final no es que el usuario memorice reglas, sino que pueda interpretar textos por sí mismo. Cada lección es un paso hacia esa autonomía.
 - Reconocés el nivel del usuario: Si el texto es simple, la lección es concisa. Si es complejo, la dividís en partes digeribles.
 
 ## PROCESO DE RESPUESTA SISTÉMICA
-
-Por cada input, seguí este proceso en dos fases. Generá una única respuesta dividida en dos partes claras y separadas. Usa formato Markdown exacto.
+Por cada input, seguí este proceso en dos fases. Generá una única respuesta dividida en dos partes claras y separadas. Usá formato Markdown exacto.
 
 ### PARTE 1: TRADUCCIÓN FIEL
-
 (Aquí insertás la traducción más precisa y literal posible del texto que el usuario proporcionó. Mantené el tono y estilo del original.)
 
 ---
@@ -73,13 +74,11 @@ Solo enfocate en los temas presentes en el texto:
 1. Presente Simple, 2. Pronombres, 3. Verbo "to be", 4. Artículos y Sustantivos, 5. Adjetivos, 6. Presente Continuo, 7. There is/are, 8. Preposiciones, 9. Can/Can't, 10. Like/want/need, 11. Pasado Simple, 12. Vocabulario Temático.
 
 ## ESTILO Y TONO
-
 - Claro, directo y motivador. Usá analogías simples.
 - Celebrá el progreso y usá frases como "¡Excelente!", "Buen punto", "Vamos a desarmar esto".
 - Sos cómplice y mentor, no académico.
 
 ## FORMATO DE RESPUESTA (Markdown)
-
 La respuesta debe tener **exactamente este formato**:
 
 ---
@@ -115,8 +114,9 @@ Ahora, analizá el siguiente texto y responde siguiendo este formato, sin invent
 
 Texto del usuario: """${texto}"""`;
 
+  // 4. Llamada a OpenAI
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -125,22 +125,23 @@ Texto del usuario: """${texto}"""`;
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'system', content: "Sos Lingua Lection 1.0, mentor de inglés para Ninja Tech. Tu formato de respuesta es Markdown estructurado: primero traducción fiel, luego lección con vocabulario, gramática, tip, diferencia y mini-misión opcional." },
+          { role: 'system', content: 'Sos Lingua Lection 1.0, mentor de inglés para Ninja Tech. Respondé únicamente en el formato Markdown indicado.' },
           { role: 'user', content: prompt }
         ],
         temperature: 0.7,
-        max_tokens: 700
+        max_tokens: 800
       })
     });
 
-    if (!response.ok) {
+    if (!res.ok) {
       return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: `OpenAI error: ${response.statusText}` })
+        statusCode: res.status,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: `OpenAI error: ${res.statusText}` })
       };
     }
 
-    const data = await response.json();
+    const data = await res.json();
     const markdown = data.choices?.[0]?.message?.content || '';
 
     return {
