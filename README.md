@@ -1,4 +1,4 @@
-# 🥷 Ninja Tech · Ecosistema Tecnológico
+# Ninja Tech · Ecosistema Tecnológico
 
 **Fundado por Facundo Barreto**
 
@@ -6,7 +6,7 @@ Ninja Tech es una plataforma híbrida que combina tienda online, comunidad tecno
 
 ---
 
-## 🚀 Estructura del Proyecto
+## Estructura del Proyecto
 
 - `index.html` → Página principal con formulario de captura (Netlify Forms)
 - `style.css` → Estilos base con paleta rojo/negro y diseño minimalista
@@ -15,7 +15,7 @@ Ninja Tech es una plataforma híbrida que combina tienda online, comunidad tecno
 
 ---
 
-## 🧭 Principios Operativos
+## Principios Operativos
 
 - Sin deuda operativa  
 - Reinvención constante  
@@ -24,14 +24,14 @@ Ninja Tech es una plataforma híbrida que combina tienda online, comunidad tecno
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Lanzar Ninja Tech antes de 2026 como ecosistema autosustentable, escalable y replicable.  
 Construido desde Argentina con visión global.
 
 ---
 
-## 📬 Contacto
+## Contacto
 
 Sumate a la comunidad y seguí el desarrollo en tiempo real.  
 Este proyecto está en fase fundacional y abierto a colaboraciones estratégicas.
