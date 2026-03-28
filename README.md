@@ -24,7 +24,7 @@ Ninja Tech es una plataforma híbrida que combina tienda online, comunidad tecno
 
 ## Objetivo
 
-Lanzar Ninja Tech antes de 2026 como ecosistema autosustentable, escalable y replicable.  
+Lanzar Ninja como ecosistema autosustentable, escalable y replicable.  
 Construido desde Argentina con visión global.
 
 ---
