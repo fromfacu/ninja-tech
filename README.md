@@ -1,7 +1,5 @@
 # Ninja Tech · Ecosistema Tecnológico
 
-**Fundado por Facundo Barreto**
-
 Ninja Tech es una plataforma híbrida que combina tienda online, comunidad tecnológica, radar automatizado y gamificación educativa. Diseñada para operar entre Argentina, Paraguay y Brasil, con visión global.
 
 ---
